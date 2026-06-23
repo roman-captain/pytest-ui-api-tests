@@ -12,6 +12,7 @@ Full-stack test suite built with **pytest** + **Playwright** (UI) + **requests**
 | UI automation | playwright-python (sync API) |
 | API client | requests |
 | Schema validation | jsonschema |
+| Keyword-driven tests | Robot Framework + RequestsLibrary |
 | CI | GitHub Actions (push + daily cron) |
 
 ---
@@ -25,6 +26,8 @@ pytest-ui-api-tests/
 ├── requirements.txt
 ├── schemas/
 │   └── pet_schema.json  # JSON Schema for contract testing
+├── robot/
+│   └── petstore_api.robot  # Robot Framework: keyword-driven API tests (CRUD)
 └── tests/
     ├── api/
     │   ├── test_pet_crud.py       # POST / GET / PUT with schema validation
@@ -57,6 +60,9 @@ pytest -m api -v
 
 # UI only
 pytest -m ui -v
+
+# Robot Framework
+robot robot/petstore_api.robot
 ```
 
 ---
@@ -69,3 +75,4 @@ pytest -m ui -v
 - **jsonschema validation**: contract testing (validates types + required fields + enum values)
 - **Boundary Value Testing**: edge case IDs: `0`, `-1`, `int32 MAX`, `int64 overflow`
 - **get_by_role()**: accessibility-aware locators, stable against DOM changes
+- **Robot Framework**: keyword-driven syntax — tests readable by non-technical stakeholders; `*** Settings ***`, `*** Variables ***`, `*** Test Cases ***` sections; runs independently from pytest

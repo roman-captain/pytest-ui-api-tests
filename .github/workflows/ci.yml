@@ -30,3 +30,6 @@ jobs:
 
       - name: Run UI tests
         run: pytest -m ui -v
+
+      - name: Run Robot Framework tests
+        run: robot robot/petstore_api.robot
