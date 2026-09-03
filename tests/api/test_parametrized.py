@@ -17,7 +17,9 @@ def test_find_by_status(api_base_url, status):
 @pytest.mark.parametrize("pet_id,allowed_statuses", [
     (0,                   [400, 404]),
     (-1,                  [400, 404]),
-    (2_147_483_647,       [404]),
+    # Shared public sandbox: anyone can create a pet under this id,
+    # so an existing record is a valid outcome for the boundary check.
+    (2_147_483_647,       [200, 404]),
     (999_999_999_999,     [400, 404, 500]),
 ])
 def test_boundary_pet_ids(api_base_url, pet_id, allowed_statuses):
