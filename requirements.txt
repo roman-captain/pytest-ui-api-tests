@@ -1,5 +1,6 @@
 pytest
 pytest-playwright
+pytest-rerunfailures
 requests
 jsonschema
 robotframework

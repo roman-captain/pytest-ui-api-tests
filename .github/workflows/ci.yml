@@ -29,7 +29,10 @@ jobs:
         run: pytest -m api -v
 
       - name: Run UI tests
-        run: pytest -m ui -v
+        # github.com sits behind bot-scoring that occasionally soft-blocks
+        # a click without an error, only from CI runner IPs. Retry here,
+        # not locally.
+        run: pytest -m ui -v --reruns 2 --reruns-delay 2
 
       - name: Run Robot Framework tests
         run: robot robot/petstore_api.robot
