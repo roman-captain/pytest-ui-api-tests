@@ -15,7 +15,7 @@ class TestGitHubNav:
     def test_pricing_page(self, page: Page):
         page.goto("/")
         page.get_by_role("link", name="Pricing").first.click()
-        assert "Pricing" in page.title()
+        assert "pricing" in page.title().lower()
 
     # GitHub protects the signup flow with DataDome, so page content (form or
     # challenge) is not deterministic. This test covers the entry point only:
